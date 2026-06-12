@@ -13,40 +13,36 @@ prod = []
 while(repetir):
     Producto.limpiar_pantalla()
     opcion = 0
-    while (opcion < 1 or opcion > 4):
-        opcion = int(input(f"*** MENU ***\n1. Introducir nuevo producto\n2. Buscar libro con mas paginas\n3. Comparar paginas de dos libros\n4. Salir\n\nSeleccion: "))
+    while (opcion < 1 or opcion > 6):
 
+        opcion = int(input(f"*** MENU ***\n1. Introducir nuevo producto\n2. Ver total de productos creados\n3. Ver stock total en tienda\n4. Ver valor total del stock en tienda\n5. Ver listado de productos\n6. Salir\n\nSeleccion: "))
 
         if opcion == 1:
-            t_codigo = int(input("Introduce codigo: "))
-            t_nombre = input("Introduce nombre: ")
-            t_precio = input("Introduce precio: ")
-            t_stock = int(input("Introduce stock: "))
-            prod.append(Producto(t_codigo, t_nombre, t_precio, t_stock))
-            print(f"Total productos: {Producto.total}")
+            t_codigo = int(input("Introduce codigo: ")); t_nombre = input("Introduce nombre: ")
+            t_precio = float(input("Introduce precio: ")); t_stock = int(input("Introduce stock: "))
+            prod.append(Producto(t_codigo, t_nombre, t_precio, t_stock))            
         
+        elif opcion == 2:
+            print(f"\nTotal productos creados: {Producto.total}")
+            input("\nPulsa una intro para continuar")
+
+        elif opcion == 3:
+            aux = Producto.stock_total(prod)
+            print(f"Total de stock en la tienda: {aux}")
+            input("\nPulsa una intro para continuar")
+
         elif opcion == 4:
+            aux = Producto.valor_total(prod)
+            print(f"El valor total del stock en tienda es {aux}")
+            input("\nPulsa una intro para continuar")
+
+        elif opcion == 5:
+            for aux in prod:
+                print(aux)
+            input("\nPulsa una intro para continuar")
+
+        elif opcion == 6:
             repetir = False
 
         else:
-            Libro.limpiar_pantalla()
-"""
-        if opcion == 2:
-            x = Libro.haylibros(lib)
-            if x == True:
-                Libro.maximopaginas(lib)
-            else:
-                print(f"Aun no hay libros registrados\n")
-            input("\nPulsa una intro para continuar")
-
-
-        if opcion == 3:
-            x = Libro.haylibros(lib)
-            if x == True:
-                Libro.comparapaginas(lib)
-            else:
-                print(f"Aun no hay libros registrados\n")
-            input("\nPulsa intro para continuar")
-
-"""
-        
+            Producto.limpiar_pantalla()
